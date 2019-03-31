@@ -6,6 +6,8 @@ Y la configuracion esta en el ChoreService.js para hacer configuracion local.
 De todos modos es una tabla llamada chores con un campo id, name, description. Aun faltan validaciones pero estoy avanzando.
 Si logro solucionar el paso de los valores desde el ChoresService a ChoresControlller termino esto :D
 
+Hago una llamada localhost:8080 ya que todo esta a ese puerto y esta no es la exception :D y se despluega el formulario que aun no puedo hacer funcionar desde el back.
+
 :::Tools:::
 11.13.0 Node
 Jade,
