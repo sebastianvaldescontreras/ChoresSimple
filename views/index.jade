@@ -1,0 +1,41 @@
+html(lang="en")
+  head
+    title Chores Simples
+    meta( charset='utf-8' )
+    meta( http-equiv='X-UA-Compatible', content='IE=edge' )
+    meta( name='viewport', content='width=device-width, initial-scale=1.0' )
+    meta( name='description', content='Baking Bootstrap Snippets with Jade' )
+    //- Bootswatch Theme
+    link(href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.0/flatly/bootstrap.min.css", rel="stylesheet")
+  body
+    div
+        h2 Chores or Task
+        table
+            tr
+                td
+                    p ID: 
+                td
+                    input(type='textbox', name='id',placeholder='ID Chore')
+            tr
+                td
+                    p Name: 
+                td
+                    input(type='textbox', name='name',placeholder='Chore Name')
+            tr
+                td
+                    p Description:
+                td
+                    input(type='textbox', name='description',placeholder="Chore Description")          
+        table
+            tr
+                td
+                    input(type='button', value='Put',name='putButton',class='btn btn-primary')
+                td
+                    input(type='button', value='Delete',name='deleteButton',class='btn btn-danger')
+                td
+                    input(type='button', value='Post',name='postButton',class='btn btn-warning')
+                td
+                    input(type='button', value='Select',name='selectButton',class='btn btn-success')
+    
+    
+    
