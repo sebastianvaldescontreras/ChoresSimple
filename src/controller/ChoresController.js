@@ -23,8 +23,13 @@ choresController.delete('/chore', function (request, response){
   response.send(choreService.deleteChore(request.body));
 });
 
+//MODE TEST NOT RESPONSE FROM SERVICE CORRECT HELPME WORLD
 choresController.get('/', function (request,response) {
-  response.render('index');
+  response.render('index',
+  {results:[{id: '1', name: 'post ', description:'insert'},
+            {id: '2', name: 'put', description:'update'},
+            {id: '3', name: 'delete', description:'delete'},
+            {id: '3', name: 'select', description:'select'}]});
 });
 
 module.exports = choresController;

@@ -1,41 +1,127 @@
-html(lang="en")
+html(ng-app='ChoresViewApp')
   head
     title Chores Simples
     meta( charset='utf-8' )
-    meta( http-equiv='X-UA-Compatible', content='IE=edge' )
-    meta( name='viewport', content='width=device-width, initial-scale=1.0' )
-    meta( name='description', content='Baking Bootstrap Snippets with Jade' )
-    //- Bootswatch Theme
     link(href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.0/flatly/bootstrap.min.css", rel="stylesheet")
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js')
+    script(type='text/javascript').
+        var app = angular.module("ChoresViewApp", []); 
+
+        app.controller("ChoreController", function($scope, $http) {
+
+            $scope.postChore = function(){
+                $http({
+                    method :'POST',
+                    url :'http://localhost:8080/chore',
+                    data:{
+                        'name':$scope.name,
+                        'description': $scope.description
+                    },
+                    headers: {
+                        'Content-type':'application/json;charset=utf-8'
+                    }
+                }).then(function mySuccess(response) {
+                    console.log(response.data);
+                }, function myError(response) {
+                    console.log(response.data);
+                });
+            }
+
+            $scope.putChore = function(){
+                $http({
+                    method:'PUT',
+                    url:'http://localhost:8080/chore',
+                    data:{
+                        'id': $scope.id,
+                        'name': $scope.name,
+                        'description': $scope.description
+                    },
+                    headers:{
+                        'Content-type': 'application/json;charset=utf-8'
+                    }
+                }).then(function mySuccess(response) {
+                    console.log(response.data);
+                }, function myError(response) {
+                    console.log(response.data);
+                });
+            }
+
+            $scope.deleteChore = function(){
+                $http({
+                    method : 'DELETE',
+                    url : 'http://localhost:8080/chore',
+                    data:{
+                        'id': $scope.id,
+                        'name': $scope.name,
+                        'description': $scope.description
+                    },
+                    headers:{
+                        'Content-type': 'application/json;charset=utf-8'
+                    }
+                }).then(function mySuccess(response) {
+                    console.log(response.data);
+                }, function myError(response) {
+                    console.log(response.data);
+                });
+            }
+
+            $scope.selectChore = function(){
+                $http({
+                    method : 'GET',
+                    url : 'http://localhost:8080/chore'
+                }).then(function mySuccess(response) {
+                    console.log(response.data);
+                }, function myError(response) {
+                    console.log(response.data);
+                });
+            }
+        });
+
+    style.
+        body{
+            background-color:#24CE8B;
+        }
+        .choresContent {
+            margin: 0px auto;
+            text-align: center;
+            width:550px;
+            height:100%;
+            background-color:white;
+            padding:20px;
+        }
+        .buttonPositionControl {  
+            margin:10px;
+        }
   body
-    div
+    div(class='choresContent')
         h2 Chores or Task
-        table
-            tr
-                td
-                    p ID: 
-                td
-                    input(type='textbox', name='id',placeholder='ID Chore')
-            tr
-                td
-                    p Name: 
-                td
-                    input(type='textbox', name='name',placeholder='Chore Name')
-            tr
-                td
-                    p Description:
-                td
-                    input(type='textbox', name='description',placeholder="Chore Description")          
-        table
-            tr
-                td
-                    input(type='button', value='Put',name='putButton',class='btn btn-primary')
-                td
-                    input(type='button', value='Delete',name='deleteButton',class='btn btn-danger')
-                td
-                    input(type='button', value='Post',name='postButton',class='btn btn-warning')
-                td
-                    input(type='button', value='Select',name='selectButton',class='btn btn-success')
+        p ID: 
+                    input(type='textbox', name='id',placeholder='ID Chore',class='form-control',ng-model="id")
+        p Name: 
+                    input(type='textbox', name='name',placeholder='Chore Name',class='form-control',ng-model="name")
+        p Description:
+                    textarea(rows='5' name='description',class='form-control',ng-model="description")
+        div(ng-controller='ChoreController')
+            input(type='submit', value='Post',name='postButton',class='btn btn-warning buttonPositionControl',ng-click='postChore()')
+            input(type='submit', value='Put',name='putButton',class='btn btn-primary buttonPositionControl',ng-click='putChore()')
+            input(type='submit', value='Delete',name='deleteButton',class='btn btn-danger buttonPositionControl',ng-click='deleteChore()')
+            input(type='submit', value='Select',name='selectButton',class='btn btn-success buttonPositionControl',ng-click='selectChore()')
+            hr
+            h4 Task in DataBase
+            table(class='table table-striped table-hover')
+                thead
+                    tr
+                        th(scope='col') Id     
+                        th(scope='col') Name
+                        th(scope='col') Description
+                tbody
+                    each result in results
+                        tr
+                            td #{result.id}
+                            td #{result.name}
+                            td #{result.description}
+
+
     
     
     

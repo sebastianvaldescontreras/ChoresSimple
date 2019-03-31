@@ -17,7 +17,6 @@ ChoresService.updateChore = async (_data)=>{
       if (err) {
         return console.error('Error in query', err);
       }
-      console.log(result.rowCount);
       return result.rowCount;
     });
   }catch(error){
@@ -57,7 +56,6 @@ ChoresService.deleteChore = async (_data)=> {
 ChoresService.selectChore = async (_data)=>{
   try{
     let {rows} = await client.query('SELECT * FROM CHORES');
-    console.log(rows);
     return extracData(rows);
   }catch(error){
     throw Error("error");
