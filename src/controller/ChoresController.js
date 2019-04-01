@@ -7,28 +7,20 @@ choresController.set('view engine','jade');
 
 choresController.use(express.json());
 
-choresController.post('/chore', function (request, response){
-  choreService.insertChore(request.body).then(function(result){
-    response.send(result);
-  });
+choresController.post('/chore', async function (request, response){
+    response.send(choreService.insertChore(request.body));
 });
 
-choresController.put('/chore', function (request, response){
-  choreService.updateChore(request.body).then(function(result){
-    response.send(result);
-  });
+choresController.put('/chore', async function (request, response){
+    response.send(await choreService.updateChore(request.body));
 });
 
-choresController.get('/chore', function (request, response){
-  choreService.selectChore().then(function(result){
-    response.send(result);
-  });
+choresController.get('/chore', async function (request, response){
+    response.send(await choreService.selectChore());
 });
 
-choresController.delete('/chore', function (request, response){
-  choreService.deleteChore(request.body).then(function(result){
-    response.send(result);
-  });
+choresController.delete('/chore', async function (request, response){
+    response.send(await choreService.deleteChore(request.body));
 });
 
 choresController.get('/', function (request,response){

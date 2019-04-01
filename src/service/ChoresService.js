@@ -17,7 +17,7 @@ ChoresService.updateChore = async (_data)=>{
       if (err) {
         return console.error('Error in query', err);
       }
-      return result.rowCount;
+      return extracData({'rows':result.rowCount});
     });
   }catch(error){
     throw Error("error");
@@ -26,13 +26,12 @@ ChoresService.updateChore = async (_data)=>{
 
 ChoresService.insertChore = async (_data)=> {
   try{
-    console.log(_data.name);
     await client.query("INSERT INTO CHORES (NAME, DESCRIPTION) VALUES (($1),($2))",
     [_data.name, _data.description], function(err, result) {
       if (err) {
         return console.error('Error in query', err);
       }
-      return result.rowCount;
+      return extracData({'rows':result.rowCount});
     });
   }catch(error){
     throw Error("error");
@@ -46,7 +45,7 @@ ChoresService.deleteChore = async (_data)=> {
       if (err) {
         return console.error('Error in query', err);
       }
-      return result.rowCount;
+      return extracData({'rows':result.rowCount});
     });
   }catch(error){
     throw Error("error");
