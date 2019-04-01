@@ -8,28 +8,34 @@ choresController.set('view engine','jade');
 choresController.use(express.json());
 
 choresController.post('/chore', function (request, response){
-  response.send(choreService.insertChore(request.body));
+  choreService.insertChore(request.body).then(function(result){
+    response.send(result);
+  });
 });
 
 choresController.put('/chore', function (request, response){
-  response.send(choreService.updateChore(request.body));
+  choreService.updateChore(request.body).then(function(result){
+    response.send(result);
+  });
 });
 
 choresController.get('/chore', function (request, response){
-  response.send(choreService.selectChore());
+  choreService.selectChore().then(function(result){
+    response.send(result);
+  });
 });
 
 choresController.delete('/chore', function (request, response){
-  response.send(choreService.deleteChore(request.body));
+  choreService.deleteChore(request.body).then(function(result){
+    response.send(result);
+  });
 });
 
-//MODE TEST NOT RESPONSE FROM SERVICE CORRECT HELPME WORLD
-choresController.get('/', function (request,response) {
-  response.render('index',
-  {results:[{id: '1', name: 'post ', description:'insert'},
-            {id: '2', name: 'put', description:'update'},
-            {id: '3', name: 'delete', description:'delete'},
-            {id: '3', name: 'select', description:'select'}]});
+choresController.get('/', function (request,response){
+  choreService.selectChore().then(function(result){
+    response.render('index',
+    {results:result});
+  });
 });
 
 module.exports = choresController;

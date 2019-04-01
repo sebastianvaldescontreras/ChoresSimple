@@ -63,7 +63,7 @@ ChoresService.selectChore = async (_data)=>{
 }
 
 function extracData(_data){
-  return JSON.parse(JSON.stringify(_data))[0];
+  return JSON.parse(JSON.stringify(_data));
 }
 
 module.exports = ChoresService;
