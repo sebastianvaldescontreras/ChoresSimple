@@ -98,11 +98,11 @@ html(ng-app='ChoresViewApp')
     div(class='choresContent')
         h2 Chores or Task
         p ID: 
-                    input(type='textbox', name='id',placeholder='ID Chore',class='form-control',ng-model="id")
+                    input(type='textbox', name='id',placeholder='ID Chore',class='form-control',ng-model='id')
         p Name: 
-                    input(type='textbox', name='name',placeholder='Chore Name',class='form-control',ng-model="name")
+                    input(type='textbox', name='name',placeholder='Chore Name',class='form-control',ng-model='name',maxlength='50')
         p Description:
-                    textarea(rows='5' name='description',class='form-control',ng-model="description")
+                    textarea(rows='5' name='description',class='form-control',ng-model='description',maxlength='400')
         div(ng-controller='ChoreController')
             input(type='button', value='Post',name='postButton',class='btn btn-warning btn-block',ng-click='postChore()')
             input(type='button', value='Put',name='putButton',class='btn btn-primary btn-block',ng-click='putChore()')

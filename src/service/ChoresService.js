@@ -54,7 +54,7 @@ ChoresService.deleteChore = async (_data)=> {
 
 ChoresService.selectChore = async (_data)=>{
   try{
-    let {rows} = await client.query('SELECT * FROM CHORES');
+    let {rows} = await client.query('SELECT ID, NAME, DESCRIPTION FROM CHORES ORDER BY ID ASC');
     return extracData(rows);
   }catch(error){
     throw Error("error");
